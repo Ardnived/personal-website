@@ -1,0 +1,26 @@
+<article id="<%= data.slug %>">
+	<a class="internal project-link" href="#<%= data.slug %>">
+		<div class="summary">
+			<% if (typeof data.fragments['project.illustration'] != 'undefined') { %>
+				<img class="preview" src="<%= data.fragments['project.illustration'].value.views.icon.url %>" />
+			<% } %>
+
+			<div class="title"><%= data.fragments['project.title'].value[0].text %></div>
+			<div class="description"><%= data.fragments['project.longlede'].value[0].text %></div>
+			<div class="tags">
+				<%= data.tags.splice(1, data.tags.length-1).join(", ") %>
+			</div>
+			<div class="more">SHOW MORE</div>
+		</div>
+	</a>
+	<div class="details">
+		<h3 class="title"><%= data.fragments['project.title'].value[0].text %></h3>
+		<div class="description"><%= data.fragments['project.longlede'].value[0].text %></div>
+
+		<% if (typeof data.fragments['project.content'] != 'undefined') { %>
+			<div class="description"><%= data.fragments['project.content'].value[0].text %></div>
+		<% } %>
+
+		<pre><%= JSON.stringify(data, null, 4) %></pre>
+	</div>
+</article>
