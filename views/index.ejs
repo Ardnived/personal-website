@@ -1,52 +1,33 @@
 <% layout('layout') -%>
 
-<form action="/search<%= ctx.maybeRef ? '?ref=' + ctx.maybeRef : '' %>">
-    <input type="text" name="q" value="">
-    <input type="submit" value="Search">
-</form>
+<div id="games"></div>
+<br>
+<div id="about">
+	You're looking at the project list of one, <i>Devindra Payment</i>; Programmer, Game Developer, Roleplayer, etc.
+</div>
 
-<hr>
-
-<h2 id="title">
-    <% if(docs.total_results_size > 0) { %>
-        <%= docs.total_results_size %> documents
-    <% } else { %>
-        No documents found
-    <% } %>
-</h2>
-
-<ul id="list">
-    <% for(var i=0; i<docs.results.length; i++) { %>
-        <li>
-            <a href="<%= ctx.linkResolver(ctx, docs.results[i]) %>">
-                <%= docs.results[i].slug %>
-            </a>
-        </li>
-    <% } %>
-</ul>
-
-<hr>
-
-<% if (docs.total_pages > 1) { %>
-    <ul>
-        <% if (docs.page > 1) { %>
-            <li>
-                <a href="/?page=<%= docs.page - 1 %>">previous page</a>
-            </li>
-        <% } %>
-        <% for (var i = 1; i<=docs.total_pages; i++) { %>
-            <li>
-                <% if (docs.page == i) { %>
-                    <span><%= i %></span>
-                <% } else { %>
-                    <a href="/?page=<%= i %>"><%= i %></a>
-                <% } %>
-            </li>
-        <% } %>
-        <% if (docs.page != docs.total_pages) { %>
-            <li>
-                <a href="/?page=<%= docs.total_pages %>">next page</a>
-            </li>
-        <% } %>
-    </ul>
-<% } %>
+<div id="index">
+	<section id="section-games">
+		<h2>Games</h2>
+		<% for (var i = 0; i < docs_game.results.length; i++) { %>
+			<% data = docs_game.results[i] %>
+			<%- partial('project') %>	
+		<% } %>
+	</section>
+	<div id="roleplay"></div>
+	<section id="section-roleplay">
+		<h2>Roleplay</h2>
+		<% for (var i = 0; i < docs_roleplay.results.length; i++) { %>
+			<% data = docs_roleplay.results[i] %>
+			<%- partial('project') %>
+		<% } %>
+	</section>
+	<div id="code"></div>
+	<section id="section-code">
+		<h2>Code</h2>
+		<% for (var i = 0; i < docs_code.results.length; i++) { %>
+			<% data = docs_code.results[i] %>
+			<%- partial('project') %>
+		<% } %>
+	</section>
+</div>
