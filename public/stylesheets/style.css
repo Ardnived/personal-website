@@ -342,8 +342,13 @@ article .details {
 	width: 100%;
 	max-width: 600px;
 	padding: 10px;
+	padding-top: 20px;
 	overflow: hidden;
 	overflow-y: scroll;
+}
+
+article .details .title {
+	margin-top: 0;
 }
 
 article .details .links {
