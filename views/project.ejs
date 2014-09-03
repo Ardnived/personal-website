@@ -33,6 +33,9 @@
 			<div class="description"><%- data.fragments['project.content'].value[0].text %></div>
 		<% } %>
 		<hr>
-		<pre><%= JSON.stringify(data, null, 4) %></pre>
+		<details>
+			<summary style="font-family: monospace;">data</summary>
+			<pre><%= JSON.stringify(data, null, 4) %></pre>
+		</details>
 	</div>
 </article>
