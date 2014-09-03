@@ -61,6 +61,24 @@ img {
 	float: right;
 }
 
+.button {
+	display: block;
+	width: 110px;
+	padding: 10px;
+	margin: 5px;
+
+	border: 2px solid #3299BB;
+	border-radius: 3px;
+
+	font-family: sans-serif;
+	font-weight: bold;
+	white-space: nowrap;
+}
+
+.button:hover {
+	background: white;
+}
+
 
 /* ===== MOBILE ===== */
 @media (max-width : 600px) {
@@ -320,9 +338,13 @@ article .details {
 
 	box-sizing: border-box;	
 	width: 100%;
-	max-width: 800px;
+	max-width: 600px;
 	padding: 10px;
 	overflow: hidden;
 	overflow-y: scroll;
+}
+
+article .details .links {
+	margin: 10px;
 }
 

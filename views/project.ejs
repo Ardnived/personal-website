@@ -14,13 +14,25 @@
 		</div>
 	</a>
 	<div class="details">
-		<h3 class="title"><%= data.fragments['project.title'].value[0].text %></h3>
-		<div class="description"><%= data.fragments['project.longlede'].value[0].text %></div>
-
-		<% if (typeof data.fragments['project.content'] != 'undefined') { %>
-			<div class="description"><%= data.fragments['project.content'].value[0].text %></div>
+		<% if (typeof data.fragments['project.links'] != 'undefined') { %>
+			<div class="pull-right">
+				<% for (var i = 0; i < data.fragments['project.links'].value.length; i++) { %>
+					<% var obj = data.fragments['project.links'].value[i] %>
+					<a class="button" href="<%= obj.link.value.url %>">
+						<img src="/images/link.svg" class="pull-right on-hover">
+						<%= obj.name.value %>
+					</a>
+				<% } %>
+			</div>
 		<% } %>
 
+		<h3 class="title"><%= data.fragments['project.title'].value[0].text %></h3>
+		<div class="description"><%= data.fragments['project.longlede'].value[0].text %></div>
+		<br>
+		<% if (typeof data.fragments['project.content'] != 'undefined') { %>
+			<div class="description"><%- data.fragments['project.content'].value[0].text %></div>
+		<% } %>
+		<hr>
 		<pre><%= JSON.stringify(data, null, 4) %></pre>
 	</div>
 </article>

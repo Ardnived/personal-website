@@ -62,12 +62,13 @@
 
 <script type="text/javascript">
 	var active_article = null
+	var anchor = ""
 
 	function open(id) {
 		active_article = id
 		$(active_article).addClass('active')
 
-		window.history.replaceState(null, null, "/"+id.substring(1));
+		window.history.replaceState(null, null, "/"+id.substring(1))
 	}
 
 	function close() {
@@ -75,7 +76,7 @@
 			$(active_article).removeClass('active')
 			active_article = null
 
-			window.history.pushState(null, null, "/");
+			window.history.pushState(null, null, "/"+anchor)
 		}
 	}
 
@@ -96,18 +97,26 @@
 			id = '#'+id
 		}
 
-		console.log(id)
-
 		if ($(id).prop("tagName") == "ARTICLE") {
 			open(id)
 		}
+
+		$(window).on('activate.bs.scrollspy', function(event) {
+			anchor = $("a[href^='#']", event.target).attr("href")
+
+			if (active_article == null) {
+				window.history.replaceState(null, null, anchor)			
+			}
+		});
 	})
 
-	$(window).on('activate.bs.scrollspy', function (event) {
-		if (active_article == null) {
-			window.history.replaceState(null, null, $("a[href^='#']", event.target).attr("href"));			
-		}
-	});
+	$('article .details').click(function(event) {
+	    event.stopPropagation();
+	})
+
+	$('html').click(function() {
+		close()
+	})
 
 	$('#navigation a').on('click', function(event) {
 		close()
