@@ -281,7 +281,7 @@ article .summary .title {
 	font-weight: bold;
 }
 
-article .summary .description {
+article .summary .lede {
 	height: 6em;
 	overflow: hidden;
 	max-width: 700px;
@@ -348,3 +348,6 @@ article .details .links {
 	margin: 10px;
 }
 
+article .details .lede {
+	color: #BCBCBC;
+}
