@@ -20,7 +20,8 @@
 
 			<nav id="navigation">
 				<ul class="nav">
-					<li class="active"><a class="internal" href="#games">Games</a></li>
+					<li class="active"><a class="internal" href="#introduction">Introduction</a></li>
+					<li><a class="internal" href="#games">Games</a></li>
 					<li><a class="internal" href="#roleplay">Roleplay</a></li>
 					<li><a class="internal" href="#code">Code</a></li>
 				</ul>
@@ -39,6 +40,12 @@
 						<a href="https://twitter.com/Ardnived" target="_blank">
 							<img src="/images/link.svg" class="pull-right on-hover">
 							Twitter
+						</a>
+					</li>
+					<li class="linkedin">
+						<a href="http://ca.linkedin.com/pub/devindra-payment/63/9b3/177" target="_blank">
+							<img src="/images/link.svg" class="pull-right on-hover">
+							LinkedIn
 						</a>
 					</li>
 				</ul>
@@ -87,7 +94,7 @@
 
 	$(document).ready(function() {
 		if ($('#index') != null) {
-			$('body').scrollspy({ target: '#navigation', offset: 200 })
+			$('body').scrollspy({ target: '#navigation', offset: 80 })
 		}
 
 		var url = window.location.hash

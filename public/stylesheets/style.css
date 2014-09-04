@@ -211,9 +211,13 @@ img {
 	background: #69B1E5;
 }
 
+#social .linkedin {
+	background: rgb(73, 123, 179);
+}
+
 
 /* ===== CONTENT ===== */
-#about {
+#section-introduction {
 	font-size: 90%;
 	color: #878787;
 }
