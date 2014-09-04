@@ -27,11 +27,32 @@
 		<% } %>
 
 		<h3 class="title"><%= data.fragments['project.title'].value[0].text %></h3>
-		<div class="lede"><%= data.fragments['project.longlede'].value[0].text %></div>
-		<br>
+		<p class="lede"><%= data.fragments['project.longlede'].value[0].text %></p>
+
 		<% if (typeof data.fragments['project.content'] != 'undefined') { %>
-			<div class="content"><%- data.fragments['project.content'].value[0].text %></div>
+			<div class="content">
+				<% for (var i = 0; i < data.fragments['project.content'].value.length; i++) { %>
+					<p><%- data.fragments['project.content'].value[i].text %></p>
+				<% } %>
+			</div>
 		<% } %>
+
+		<% if (typeof data.fragments['project.attachments'] != 'undefined') { %>
+			<ul class="attachments">
+				<% for (var i = 0; i < data.fragments['project.attachments'].value.length; i++) { %>
+					<li>
+						<a href="<%= data.fragments['project.attachments'].value[i].link.value.file.url %>" target="_blank">
+							<% if (typeof data.fragments['project.attachments'].value[i].name.value != "") { %>
+								<%= data.fragments['project.attachments'].value[i].name.value %>
+							<% } else { %>
+								<%= data.fragments['project.attachments'].value[i].link.value.file.name %>
+							<% } %>
+						</a>
+					</li>
+				<% } %>
+			</ul>
+		<% } %>
+
 		<hr>
 		<details>
 			<summary style="font-family: monospace;">source data</summary>

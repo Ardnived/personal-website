@@ -359,6 +359,17 @@ article .details .links {
 	margin: 10px;
 }
 
+article .details .attachments li:before {
+	content: "—";
+	position: relative;
+	left: -5px;
+}
+
+article .details .attachments li {
+	list-style-type: none;
+	text-indent: -5px;
+}
+
 article .details .lede {
 	color: #878787;
 }
