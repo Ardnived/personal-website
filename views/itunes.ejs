@@ -21,7 +21,7 @@
 			<itunes:email><%= podcast.fragments['podcast.owner_email'].value %></itunes:email>
 		</itunes:owner>
 		
-		<itunes:image href="<%= podcast.fragments['podcast.illustration'].value.main.url %>"/></itunes:image>
+		<itunes:image href="<%= podcast.fragments['podcast.illustration'].value.main.url %>"></itunes:image>
 		<itunes:explicit>no</itunes:explicit>
 
 		<% for (var i = 0; i < podcast.fragments['podcast.episodes'].value.length; i++) { %>
