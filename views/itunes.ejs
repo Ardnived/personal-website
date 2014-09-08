@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:itunesu="http://www.itunesu.com/feed" version="2.0" >
+	<channel>
+		<title><%= podcast.fragments['podcast.title'].value %></title>
+		<link><%= podcast.fragments['podcast.link'].value.url %></link>
+		<language>en-us</language>
+
+		<itunes:subtitle><%= podcast.fragments['podcast.subtitle'].value %></itunes:subtitle>
+		<itunes:author><%= podcast.fragments['podcast.author'].value %></itunes:author>
+
+		<itunes:summary>
+			<%= podcast.fragments['podcast.summary'].value %>
+		</itunes:summary>
+		
+		<description>
+			<%= podcast.fragments['podcast.summary'].value %>
+		</description>
+		
+		<itunes:owner>
+			<itunes:name><%= podcast.fragments['podcast.owner_name'].value %></itunes:name>
+			<itunes:email><%= podcast.fragments['podcast.owner_email'].value %></itunes:email>
+		</itunes:owner>
+		
+		<itunes:image href="<%= podcast.fragments['podcast.illustration'].value.main.url %>"/></itunes:image>
+		<itunes:explicit>no</itunes:explicit>
+
+		<% for (var i = 0; i < podcast.fragments['podcast.episodes'].value.length; i++) { %>
+			<% data = podcast.fragments['podcast.episodes'].value[i] %>
+			<item>
+				<title><%= data.title.value %></title>
+				<itunes:author><%= podcast.fragments['podcast.author'].value %></itunes:author>
+				<itunes:subtitle><%= data.subtitle.value %></itunes:subtitle>
+				<itunes:summary><%= data.summary.value %></itunes:summary>
+				<enclosure url="<%= data.media.value.url %>" length="<%= data.bytelength.value %>" type="audio/mpeg"/>
+				<guid><%= data.media.value.url %></guid>
+				<pubDate><%= moment(data.date.value).format("ddd, D MMM YYYY, [0:00:00 GMT]") %></pubDate>
+				<itunes:duration><%= data.duration.value %></itunes:duration>
+				<itunes:keywords><%= podcast.tags.join(", ") %></itunes:keywords>
+			</item>
+		<% } %>
+
+	</channel>
+</rss>

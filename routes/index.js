@@ -1,4 +1,5 @@
 var prismic = require('../prismic-helpers');
+var moment = require('moment');
 
 // -- Display all documents
 
@@ -22,46 +23,21 @@ exports.index = prismic.route(function(req, res, ctx) {
 	});
 });
 
-// -- Display a given document
+// -- Generate an iTunes XML feed.
 
-exports.detail = prismic.route(function(req, res, ctx) {
-	var id = req.params['id'],
-		slug = req.params['slug'];
+exports.itunes = prismic.route(function(req, res, ctx) {
+	var slug = req.url.substring(req.url.lastIndexOf('/')+1);
 
-	prismic.getDocument(ctx, id, slug, 
-		function(err, doc) {
-			if (err) { prismic.onPrismicError(err, req, res); return; }
-			res.render('detail', {
-				doc: doc
-			});
-		},
-		function(doc) {
-			res.redirect(301, ctx.linkResolver(ctx, doc));
-		},
-		function(NOT_FOUND) {
-			res.send(404, 'Sorry, we cannot find that!');
-		}
-	);
-});
+	console.log('[[:d = at(my.podcast.slug, "' + slug + '")]]');
 
-// -- Search in documents
-
-exports.search = prismic.route(function(req, res, ctx) {
-	var q = req.query['q'];
-
-	if(q) {
-		ctx.api.form('everything').set("page", req.param('page') || "1").ref(ctx.ref)
-					 .query('[[:d = fulltext(document, "' + q + '")]]').submit(function(err, docs) {
-			if (err) { prismic.onPrismicError(err, req, res); return; }
-			res.render('search', {
-				docs: docs,
-				url: req.url
-			});
+	ctx.api.form('podcast').query('[[:d = at(my.podcast.slug, "' + slug + '")]]').ref(ctx.ref).submit(function(err, podcasts) {
+		if (err) { prismic.onPrismicError(err, req, res); return; }
+		var podcast = podcasts.results[0];
+		console.log(podcast);
+		
+		res.render('itunes', {
+			podcast: podcast,
+			moment: moment
 		});
-	} else {
-		res.render('search', {
-			docs: null,
-			url: req.url
-		});
-	}
+	});
 });

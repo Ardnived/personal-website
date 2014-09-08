@@ -34,6 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(errorHandler());
 
 // Routes
+app.route('/rss/*').get(routes.itunes);
 app.route('/*').get(routes.index);
 //app.route('/documents/:id/:slug').get(routes.detail);
 //app.route('/search').get(routes.search);
