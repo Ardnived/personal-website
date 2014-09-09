@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:itunesu="http://www.itunesu.com/feed" version="2.0" >
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:itunesu="http://www.itunesu.com/feed" version="2.0">
 	<channel>
 		<title><%= podcast.fragments['podcast.title'].value %></title>
 		<link><%= podcast.fragments['podcast.link'].value.url %></link>
+		
 		<language>en-us</language>
+		<itunes:category text="Arts &amp; Entertainment">
+			<itunes:category text="Games" />
+		</itunes:category>
 
 		<itunes:subtitle><%= podcast.fragments['podcast.subtitle'].value %></itunes:subtitle>
 		<itunes:author><%= podcast.fragments['podcast.author'].value %></itunes:author>
@@ -28,6 +32,7 @@
 			<% data = podcast.fragments['podcast.episodes'].value[i] %>
 			<item>
 				<title><%= data.title.value %></title>
+				<itunes:image href="<%= podcast.fragments['podcast.illustration'].value.main.url %>"></itunes:image>
 				<itunes:author><%= podcast.fragments['podcast.author'].value %></itunes:author>
 				<itunes:subtitle><%= data.subtitle.value %></itunes:subtitle>
 				<itunes:summary><%= data.summary.value %></itunes:summary>
@@ -38,6 +43,5 @@
 				<itunes:keywords><%= podcast.tags.join(", ") %></itunes:keywords>
 			</item>
 		<% } %>
-
 	</channel>
 </rss>
