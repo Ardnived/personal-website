@@ -5,8 +5,8 @@
 		<link><%= podcast.fragments['podcast.link'].value.url %></link>
 		
 		<language>en-us</language>
-		<itunes:category text="Arts &amp; Entertainment">
-			<itunes:category text="Games" />
+		<itunes:category text="Games &amp; Hobbies">
+			<itunes:category text="Other Games" />
 		</itunes:category>
 
 		<itunes:subtitle><%= podcast.fragments['podcast.subtitle'].value %></itunes:subtitle>
@@ -38,7 +38,7 @@
 				<itunes:summary><%= data.summary.value %></itunes:summary>
 				<enclosure url="<%= data.media.value.url %>" length="<%= data.bytelength.value %>" type="audio/mpeg"/>
 				<guid><%= data.media.value.url %></guid>
-				<pubDate><%= moment(data.date.value).format("ddd, D MMM YYYY, [0:00:00 GMT]") %></pubDate>
+				<pubDate><%= moment(data.date.value).format("ddd, D MMM YYYY [0:00:00 GMT]") %></pubDate>
 				<itunes:duration><%= data.duration.value %></itunes:duration>
 				<itunes:keywords><%= podcast.tags.join(", ") %></itunes:keywords>
 			</item>
