@@ -28,13 +28,16 @@ exports.index = prismic.route(function(req, res, ctx) {
 exports.itunes = prismic.route(function(req, res, ctx) {
 	var slug = req.url.substring(req.url.lastIndexOf('/')+1);
 
-	console.log('[[:d = at(my.podcast.slug, "' + slug + '")]]');
-
 	ctx.api.form('podcast').query('[[:d = at(my.podcast.slug, "' + slug + '")]]').ref(ctx.ref).submit(function(err, podcasts) {
 		if (err) { prismic.onPrismicError(err, req, res); return; }
 		var podcast = podcasts.results[0];
-		console.log(podcast);
-		
+		var image = podcast.fragments['podcast.illustration'].value.main.url;
+		image = image.split(":");
+		image[0] = "http";
+		image = image.join(":");
+
+		podcast.fragments['podcast.illustration'].value.main.url = image;
+
 		res.render('itunes', {
 			podcast: podcast,
 			moment: moment
