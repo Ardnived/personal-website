@@ -2,7 +2,6 @@ var prismic = require('../prismic-helpers');
 var moment = require('moment');
 
 // -- Display all documents
-
 exports.index = prismic.route(function(req, res, ctx) {
 	ctx.api.form('game').ref(ctx.ref).submit(function(err, docs_game) {
 		if (err) { prismic.onPrismicError(err, req, res); return; }
@@ -24,7 +23,6 @@ exports.index = prismic.route(function(req, res, ctx) {
 });
 
 // -- Generate an iTunes XML feed.
-
 exports.itunes = prismic.route(function(req, res, ctx) {
 	var slug = req.url.substring(req.url.lastIndexOf('/')+1);
 
@@ -44,3 +42,4 @@ exports.itunes = prismic.route(function(req, res, ctx) {
 		});
 	});
 });
+

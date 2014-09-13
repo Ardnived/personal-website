@@ -68,6 +68,7 @@
 </html>
 
 <script type="text/javascript">
+	var HOSTNAME = "http://devindra.ca"
 	var active_article = null
 	var anchor = ""
 
@@ -75,7 +76,7 @@
 		active_article = id
 		$(active_article).addClass('active')
 
-		window.history.replaceState(null, null, "/"+id.substring(1))
+		window.history.replaceState(null, null, HOSTNAME+"/"+id.substring(1))
 	}
 
 	function close() {
@@ -83,7 +84,7 @@
 			$(active_article).removeClass('active')
 			active_article = null
 
-			window.history.pushState(null, null, "/"+anchor)
+			window.history.pushState(null, null, HOSTNAME+"/"+anchor)
 		}
 	}
 
