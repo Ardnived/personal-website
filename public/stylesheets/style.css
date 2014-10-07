@@ -82,6 +82,11 @@ img {
 	background: white;
 }
 
+.stop-scrolling {
+	height: 100%;
+	overflow: hidden;
+}
+
 
 /* ===== MOBILE ===== */
 @media (max-width : 600px) {
@@ -131,7 +136,7 @@ img {
 	top: 0;
 	bottom: 0;
 	left: 0;
-	z-index: 1;
+	z-index: 2;
 
 	width: 150px;
 	color: #E9E9E9;
@@ -321,14 +326,14 @@ article:not(:hover) .summary .more {
 
 /* ===== ARTICLE DETAILS ===== */
 article:not(.active) .details {
-	right: -100%;
+	left: -100%;
 }
 
 article .details {
 	position: fixed;
 	top: 0;
 	bottom: 0;
-	right: 0;
+	left: 150px;
 	z-index: 1;
 
 	-webkit-transition-duration: 0.3s;
@@ -340,11 +345,11 @@ article .details {
     transition-timing-function: ease-in-out;
 	
 	background: url('/images/article.png');
-	border-left: 1px solid #878787;
+	border-right: 1px solid #878787;
 
 	box-sizing: border-box;	
 	width: 100%;
-	max-width: 600px;
+	max-width: 700px;
 	padding: 10px;
 	padding-top: 20px;
 	overflow: hidden;

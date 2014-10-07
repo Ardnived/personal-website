@@ -9,26 +9,29 @@
 <div id="index">
 	<br>
 	<div id="games"></div>
-	<section id="section-games">
+	<section id="section-games" data-anchor="#games">
 		<h2>Games</h2>
 		<% for (var i = 0; i < docs_game.results.length; i++) { %>
 			<% data = docs_game.results[i] %>
+			<% data.section = "games" %>
 			<%- partial('project') %>	
 		<% } %>
 	</section>
 	<div id="roleplay"></div>
-	<section id="section-roleplay">
+	<section id="section-roleplay" data-anchor="#roleplay">
 		<h2>Roleplay</h2>
 		<% for (var i = 0; i < docs_roleplay.results.length; i++) { %>
 			<% data = docs_roleplay.results[i] %>
+			<% data.section = "roleplay" %>
 			<%- partial('project') %>
 		<% } %>
 	</section>
 	<div id="code"></div>
-	<section id="section-code">
+	<section id="section-code" data-anchor="#code">
 		<h2>Code</h2>
 		<% for (var i = 0; i < docs_code.results.length; i++) { %>
 			<% data = docs_code.results[i] %>
+			<% data.section = "code" %>
 			<%- partial('project') %>
 		<% } %>
 	</section>

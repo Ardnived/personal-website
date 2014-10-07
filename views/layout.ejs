@@ -72,16 +72,26 @@
 	var anchor = ""
 
 	function open(id) {
+		console.log("open", id);
 		active_article = id
 		$(active_article).addClass('active')
 
+		scrolling(false)
+
 		window.history.replaceState(null, null, "/"+id.substring(1))
+
+		setTimeout(function() {
+			var section_anchor = $(active_article).parent().data('anchor')
+			$(section_anchor)[0].scrollIntoView(true)
+		}, 200)
 	}
 
 	function close() {
 		if (active_article != null) {
 			$(active_article).removeClass('active')
 			active_article = null
+
+			scrolling(true)
 
 			window.history.pushState(null, null, "/"+anchor)
 		}
@@ -90,6 +100,18 @@
 	function change(id) {
 		close()
 		open(id)
+	}
+
+	function scrolling(enabled) {
+		if (enabled) {
+			$('body').removeClass('stop-scrolling')
+			$('body').unbind('touchmove')
+		} else {
+			$('body').addClass('stop-scrolling')
+			$('body').bind('touchmove', function(event) {
+				event.preventDefault()
+			})
+		}
 	}
 
 	$(document).ready(function() {
@@ -118,7 +140,7 @@
 	})
 
 	$('article .details').click(function(event) {
-	    event.stopPropagation();
+	    event.stopPropagation()
 	})
 
 	$('html').click(function() {
@@ -137,7 +159,7 @@
 		} else {
 			change(target_article)
 		}
-		
+
 		return false
 	})
 </script>
