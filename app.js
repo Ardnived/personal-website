@@ -34,15 +34,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(errorHandler());
 
 // Routes
-app.all(/.*/, function(req, res, next) {
-    var host = req.header("host");
-
-    if (host.match(/^devindra\.ca.*/i) || host.match(/^localhost.*/i)) {
-        next();
-    } else {
-        res.redirect(301, "http://www.devindra.ca"+req.url);
-    }
-});
+//app.all(/.*/, function(req, res, next) {
+//    var host = req.header("host");
+//
+//    if (host.match(/^devindra\.ca.*/i) || host.match(/^localhost.*/i)) {
+//        next();
+//    } else {
+//        res.redirect(300, "http://www.devindra.ca"+req.url);
+//    }
+//});
 
 app.route('/rss/*').get(routes.itunes);
 app.route('/*').get(routes.index);
