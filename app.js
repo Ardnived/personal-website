@@ -40,7 +40,7 @@ app.all(/.*/, function(req, res, next) {
     if (host.match(/^devindra\.ca.*/i) || host.match(/^localhost.*/i)) {
         next();
     } else {
-        res.redirect(301, "http://devindra.ca"+req.url);
+        res.redirect(301, "http://www.devindra.ca"+req.url);
     }
 });
 
